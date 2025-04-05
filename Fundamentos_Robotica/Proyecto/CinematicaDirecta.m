@@ -13,7 +13,7 @@ function [xyz,angEuler] = CinematicaDirecta(in)
 
   % ------ SOLO DEBE ALTERAR LAS EXPRESIONES ENTRE ESTAS LÍNEAS ----------
   % SUSTITUYA los valores L0, L1, etc por sus valores numéricos  
-  L0 = 1.3; % Valor de ejemplo. Sustitúyalo por el que corresponda
+  L0 = 1.3; 
   L1A = 1.5;
   L1B = 1;
   L2 = 0.5;
