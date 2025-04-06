@@ -353,7 +353,7 @@ Ga = G;
 % La función vpa del Symbolic Toolbox evalua las expresiones de las
 % fracciones de una función simbólica, redondeándolas con la precisión que podría pasarse como segundo
 % argumento.
- Ma_ne=vpa(Ma,5);
- Va_ne=vpa(Va,5);
- Ga_ne=vpa(Ga,5);
+ Ma_ne=vpa(Ma,5)
+ Va_ne=vpa(Va,5)
+ Ga_ne=vpa(Ga,5)
 
