@@ -19,50 +19,55 @@ PI = sym(pi); % Importante para cáculo simbólico
 
 % DATOS CINEMÁTICOS DEL BRAZO DEL ROBOT
 % Dimensiones (m)
-  L0=;  % Altura de la base
+   L0 = 1.3; 
+  L1A = 1.5;
+  L1B = 1;
+  L2 = 0.5;
+  L3 = 1;
   
 % Parámetros de Denavit-Hartenberg (utilizado en primera regla de Newton-Euler)
 % Eslabón base (no utilizado)
-  theta0=0; d0=L0; a0=0; alpha0=0;
+  theta0=PI/2; d0=L0; a0=0; alpha0=PI/2;
 % Eslabón 1:
-  theta1= ; d1= ; a1= ; alpha1= ;
+  theta1= q1-PI/2; d1= L1A; a1=0; alpha1= PI/2;
 % Eslabón 2:
-  theta2= ; d2= ; a2= ; alpha2= ;
+  theta2= q2; d2= -L1B; a2= L2; alpha2= -PI/2;
 % Eslabón 3:
-  theta3= ; d3= ; a3= ; alpha3= ;
+  theta3= 0; d3= L3+q3; a3= 0; alpha3= 0;
 % Entre eslabón 3 y marco donde se ejerce la fuerza (a definir según
 % experimento)
-  theta4= ; d4= ; a4= ; alpha4= ;
+  theta4= 0; d4= 0; a4= 0; alpha4= 0;
 
 % DATOS DINÁMICOS DEL BRAZO DEL ROBOT
 % Eslabón 0 (fijo. No hace falta especificarlo porque no se mueve respecto al sistema Base B)
-  m0= 0; % kg
+  m0= 85.2755; % kg
   s00 = [0,0,0]'; % m
   I00=eye(3); % kg.m2
 
-% Eslabón 1
-  m1= ; % kg
-  s11 = [ ,  , ]'; % m
-  I11=[ ,  ,  ; ,  , ; , , ]; % kg.m2
-
-% Eslabón 2
-  m2= ; % kg
-  s22 = [ ,  , ]'; % m
-  I22=[ ,  ,  ; ,  , ; , , ]; % kg.m2
-
-% Eslabón 3
-  m3= ; % kg
-  s33 = [ ,  , ]'; % m
-  I33=[ ,  ,  ; ,  , ; , , ]; % kg.m2
+  [s11,s22,s33,I11,I22,I33] = parametrosDinamicos;
+% % Eslabón 1
+   m1= 163.991; % kg
+%   s11 = [ ,  , ]'; % m
+%   I11=[ ,  ,  ; ,  , ; , , ]; % kg.m2
+% 
+% % Eslabón 2
+   m2= 32.7982; % kg
+%   s22 = [ ,  , ]'; % m
+%   I22=[ ,  ,  ; ,  , ; , , ]; % kg.m2
+% 
+% % Eslabón 3
+   m3= 65.5965; % kg
+%   s33 = [ ,  , ]'; % m
+%   I33=[ ,  ,  ; ,  , ; , , ]; % kg.m2
 
 
 % DATOS DE LOS MOTORES
 % Inercias
-  Jm1= ; Jm2=; Jm3=; % kg.m2
+  Jm1= 0.00283288; Jm2=0.00338424; Jm3=0.00297458; % kg.m2
 % Coeficientes de fricción viscosa
-  Bm1= ; Bm2= ; Bm3= ; % N.m / (rad/s)
+  Bm1= 0.000274257; Bm2= 0.00020057; Bm3= 0.00011738; % N.m / (rad/s)
 % Factores de reducción
-  R1= ; R2= ; R3= ;
+  R1= 30; R2= 35; R3= 30;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ALGORÍTMO DE NEWTON-EULER

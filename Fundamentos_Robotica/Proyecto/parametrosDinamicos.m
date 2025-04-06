@@ -20,9 +20,9 @@ I00 = [12 0    0;
 
   
   s11 = [0 ,-0.45  ,-0.2 ]'; % (m)  Posición del cdg del eslabón 1
-  I11=[ 2.6649e6,  0,  0;... % (kg.m2) Tensor de inercia del eslabón 1
-        0,  0.9e6,  0;...
-        0,  0,  1.9256e6 ] ; 
+  I11=[ 340.8694,  0,  0;... % (kg.m2) Tensor de inercia del eslabón 1
+        0,  35.4472,  53.1708;...
+        0,  113.6801,  170.5202 ] ; 
 
 % Eslabón 2
 

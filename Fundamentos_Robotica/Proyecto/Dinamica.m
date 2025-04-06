@@ -1,8 +1,8 @@
   clc
   clear
   close all
-%% Calculo de parametros dinámicos
-L0 = 1.3; 
+%%
+  L0 = 1.3; 
   L1A = 1.5;
   L1B = 1;
   L2 = 0.5;
@@ -21,6 +21,8 @@ L0 = 1.3;
   rint = 0.08;
   rext = 0.1;
 
+%% Calculo de parametros dinámicos
+
   % Eslabón 0
   I00x = 1/12*m0*L0^2;
   I00y = 1/2*m0*(rint^2 + rext^2);
@@ -37,8 +39,8 @@ L0 = 1.3;
   s11a = [0, -L1A/2, 0]';
   s11b = [0, 0, -L1B/2]';
 
-  m1a = rho*L1A;
-  m1b = rho*L1B;
+  m1a = (m1*L1A)/(L1A+L1B);
+  m1b = (m1*L1B)/(L1A+L1B);
   s11 = (m1a*s11a + m1b*s11b)/(m1a + m1b)
 
   I11Ax = 1/12*m1a*L1A^2;
@@ -46,22 +48,25 @@ L0 = 1.3;
   I11Az = I11Ax;
 
   I11Bx = 1/12*m1b*L1B^2;
-  I11Bz = 1/2*m1b*(rint^2 + rext^2);
   I11By = I11Bx;
+  I11Bz = 1/2*m1b*(rint^2 + rext^2);
     
   I11A = [I11Ax 0    0; 
        0    I11Ay 0;
-       0    0    I11Az];
+       0    0    I11Az]
 
   I11B = [I11Bx 0    0; 
        0    I11By 0;
-       0    0    I11Bz];
+       0    0    I11Bz]
 
   r1a = s11 - s11a;
   r1b = s11 - s11b;
 
-  I11Acdm = I11A*m1a*norm(r1a)^2*eye(3)-r1a*r1a';
-  I11Bcdm = I11B*m1b*norm(r1b)^2*eye(3)-r1b*r1b';
+  Steiner_1A = norm(r1a)^2*eye(3)-r1a*r1a';
+  Steiner_1B = norm(r1b)^2*eye(3)-r1b*r1b';
+
+  I11Acdm = I11A*m1a*Steiner_1A;
+  I11Bcdm = I11B*m1b*Steiner_1B;
 
   I11 = I11Acdm + I11Bcdm
   
@@ -93,3 +98,154 @@ L0 = 1.3;
 
   %%
   
+  out = sim("Comprobacion.slx");
+  
+  %q1
+  ej1 = subplot(3,3,1);
+  plot(out.q(:,1));
+  hold on;
+  plot(out.qp(:,1));
+  grid on;
+  title('q_1');
+  legend('q','qp');
+
+  ej4 = subplot(3,3,4);
+  plot(out.qd(:,1));
+  hold on;
+  plot(out.qdp(:,1));
+  grid on;
+  title('qd_1');
+  legend('qd','qdp');
+
+  ej7 = subplot(3,3,7);
+  plot(out.qdd(:,1));
+  hold on;
+  plot(out.qddp(:,1));
+  grid on;
+  title('qdd_1');
+  legend('qdd','qddp');
+
+  %q2
+  ej2 = subplot(3,3,2);
+  plot(out.q(:,2));
+  hold on;
+  plot(out.qp(:,2));
+  grid on;
+  title('q_2');
+  legend('q','qp');
+
+  ej5 = subplot(3,3,5);
+  plot(out.qd(:,2));
+  hold on;
+  plot(out.qdp(:,2));
+  grid on;
+  title('qd_2');
+  legend('qd','qdp');
+
+  ej8 = subplot(3,3,8);
+  plot(out.qdd(:,2));
+  hold on;
+  plot(out.qddp(:,2));
+% for np=1:length(q)-1;
+% ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
+%     for n=1:N
+%     qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+%     tt(i)=t;
+%     i=i+1; t=t+inct;
+%     end
+% end
+% 
+% qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+% tt(i)=t;
+% 
+% figure;
+% plot(tt,qt);
+  grid on;
+  title('qdd_2');
+  legend('qdd','qddp');
+
+  %q3
+  ej3 = subplot(3,3,3);
+% for np=1:length(q)-1;
+% ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
+%     for n=1:N
+%     qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+%     tt(i)=t;
+%     i=i+1; t=t+inct;
+%     end
+% end
+% 
+% qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+% tt(i)=t;
+% 
+% figure;
+% plot(tt,qt);
+  plot(out.q(:,3));
+  hold on;
+  plot(out.qp(:,3));
+  grid on;
+  title('q_3');
+  legend('q','qp');
+
+  ej6 = subplot(3,3,6);
+  plot(out.qd(:,3));
+  hold on;
+  plot(out.qdp(:,3));
+  grid on;
+  title('qd_3');
+  legend('qd','qdp');
+
+  ej9 = subplot(3,3,9);
+  plot(out.qdd(:,3));
+  hold on;
+  plot(out.qddp(:,3));
+  grid on;
+  title('qdd_3');
+  legend('qdd','qddp');
+
+  %%
+  
+  angulo = linspace(0,2*pi,5);
+
+  r = L1B;
+
+  centro = [L1A,0,-1];
+
+
+  for i = 1:length(angulo)
+    x = centro(1)+r*cos(angulo(i));
+    y = centro(2)+r*sin(angulo(i));
+    z = centro(3);
+    qaux = CinematicaInversa([x,y,z]);
+
+    qi(:,i) = qaux(:,1);
+  end
+
+
+qi = [zeros(3,1) qi];
+q1 = qi(1,:);
+t = [0 2 4 6 8 10];
+
+r = i_cubico(q1,t);
+
+N = 100;
+i = 1;
+tt(i) = r(1,1);
+
+for np=1:length(q1)-1
+ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
+    for n=1:N
+    qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+    tt(i)=t;
+    i=i+1; t=t+inct;
+    end
+end
+
+qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
+tt(i)=t;
+
+figure;
+plot(tt,qt);
+grid;
+
+
