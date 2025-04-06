@@ -226,26 +226,14 @@ qi = [zeros(3,1) qi];
 q1 = qi(1,:);
 t = [0 2 4 6 8 10];
 
-r = i_cubico(q1,t);
+[qt,tt] = Trayectoria([q1',t']);
 
-N = 100;
-i = 1;
-tt(i) = r(1,1);
 
-for np=1:length(q1)-1
-ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
-    for n=1:N
-    qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-    tt(i)=t;
-    i=i+1; t=t+inct;
-    end
-end
-
-qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-tt(i)=t;
 
 figure;
 plot(tt,qt);
+xlabel('tiempo (s)');
+ylabel('q1');
 grid;
 
 
