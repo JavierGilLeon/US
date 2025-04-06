@@ -203,37 +203,101 @@
   title('qdd_3');
   legend('qdd','qddp');
 
-  %%
-  
-  angulo = linspace(0,2*pi,5);
+  %% INTERPOLADOR CUBICO 
+t = [0 2 4 6 8 10];
 
+  % Tomo la circunferencia de la Cinemática que sé que tiene solución en la
+  % inversa
+  angulo = linspace(0,2*pi,6);
   r = L1B;
-
   centro = [L1A,0,-1];
 
+  % Con la cinematica Directa
 
   for i = 1:length(angulo)
-    x = centro(1)+r*cos(angulo(i));
-    y = centro(2)+r*sin(angulo(i));
-    z = centro(3);
-    qaux = CinematicaInversa([x,y,z]);
+        x = centro(1) + r*cos(angulo(i));
+        y = centro(2) + r*sin(angulo(i));
+        z = centro(3);
 
-    qi(:,i) = qaux(:,1);
+        q = CinematicaInversa([x,y,z]);
+        q1(i) = q(1,1);
+        q2(i) = q(2,1);
+        q3(i) = q(3,1);
+        
   end
 
 
-qi = [zeros(3,1) qi];
-q1 = qi(1,:);
-t = [0 2 4 6 8 10];
 
-[qt,tt] = Trayectoria([q1',t']);
+[qt1,tt] = T3([q1',t']);
+[qt2,tt] = T3([q2',t']);
+[qt3,tt] = T3([q3',t']);
+
+for i = 1:length(qt1)
+    xyz = CinematicaDirecta([qt1(i),qt2(i),qt3(i)]);
+    x_int(i) = xyz(1);
+    y_int(i) = xyz(2);
+    z_int(i) = xyz(3);
+end
 
 
+  % Con la cinematica Inversa
+  
+
+  x = centro(1) + r*cos(angulo);
+  y = centro(2) +r*sin(angulo);
+  z = centro(3)*ones(size(angulo));
+
+  [xt,tt] = T3([x',t']);
+  [yt,tt] = T3([y',t']);
+  [zt,tt] = T3([z',t']);
+    
+  for i = 1:length(xt)
+      q = CinematicaInversa([xt(i),yt(i),zt(i)]);
+      q1_int(i) = q(1,1);
+      q2_int(i) = q(2,1);
+      q3_int(i) = q(3,1);
+  end
+
+% Graficas
 
 figure;
-plot(tt,qt);
+ej1 = subplot(3,2,1);
+plot(tt,q1_int);
+title('Interpolacion de q1');
+grid on;
+
+
+ej3 = subplot(3,2,3);
+plot(tt,q2_int);
+title('Interpolacion de q2');
+grid on;
+
+
+ej5 = subplot(3,2,5);
+plot(tt,q3_int);
 xlabel('tiempo (s)');
-ylabel('q1');
-grid;
+title('Interpolacion de q3');
+grid on;
+
+%-------
+
+ej2 = subplot(3,2,2);
+plot(tt,x_int);
+title('Interpolacion de x');
+grid on;
 
 
+ej4 = subplot(3,2,4);
+plot(tt,y_int);
+title('Interpolacion de y');
+grid on;
+
+
+ej6 = subplot(3,2,6);
+plot(tt,z_int);
+xlabel('tiempo (s)');
+title('Interpolacion de z');
+grid on;
+
+linkaxes([ej1 ej3 ej5],'x');
+linkaxes([ej2 ej4 ej6],'x');
