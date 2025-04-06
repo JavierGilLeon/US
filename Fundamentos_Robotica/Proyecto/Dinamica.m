@@ -102,7 +102,7 @@
   
   %q1
   ej1 = subplot(3,3,1);
-  plot(out.q(:,1));
+  plot(out.q(:,1),'LineWidth',1.5);
   hold on;
   plot(out.qp(:,1));
   grid on;
@@ -110,7 +110,7 @@
   legend('q','qp');
 
   ej4 = subplot(3,3,4);
-  plot(out.qd(:,1));
+  plot(out.qd(:,1),'LineWidth',1.5);
   hold on;
   plot(out.qdp(:,1));
   grid on;
@@ -118,7 +118,7 @@
   legend('qd','qdp');
 
   ej7 = subplot(3,3,7);
-  plot(out.qdd(:,1));
+  plot(out.qdd(:,1),'LineWidth',1.5);
   hold on;
   plot(out.qddp(:,1));
   grid on;
@@ -127,7 +127,7 @@
 
   %q2
   ej2 = subplot(3,3,2);
-  plot(out.q(:,2));
+  plot(out.q(:,2),'LineWidth',1.5);
   hold on;
   plot(out.qp(:,2));
   grid on;
@@ -135,7 +135,7 @@
   legend('q','qp');
 
   ej5 = subplot(3,3,5);
-  plot(out.qd(:,2));
+  plot(out.qd(:,2),'LineWidth',1.5);
   hold on;
   plot(out.qdp(:,2));
   grid on;
@@ -143,44 +143,16 @@
   legend('qd','qdp');
 
   ej8 = subplot(3,3,8);
-  plot(out.qdd(:,2));
+  plot(out.qdd(:,2),'LineWidth',1.5);
   hold on;
   plot(out.qddp(:,2));
-% for np=1:length(q)-1;
-% ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
-%     for n=1:N
-%     qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-%     tt(i)=t;
-%     i=i+1; t=t+inct;
-%     end
-% end
-% 
-% qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-% tt(i)=t;
-% 
-% figure;
-% plot(tt,qt);
   grid on;
   title('qdd_2');
   legend('qdd','qddp');
 
   %q3
   ej3 = subplot(3,3,3);
-% for np=1:length(q)-1;
-% ti=r(np,1); tf=r(np,2); t=ti; inct=(tf-ti)/N;
-%     for n=1:N
-%     qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-%     tt(i)=t;
-%     i=i+1; t=t+inct;
-%     end
-% end
-% 
-% qt(i)=r(np,3)+r(np,4)*(t-ti)+r(np,5)*(t-ti)^2+r(np,6)*(t-ti)^3;
-% tt(i)=t;
-% 
-% figure;
-% plot(tt,qt);
-  plot(out.q(:,3));
+  plot(out.q(:,3),'LineWidth',1.5);
   hold on;
   plot(out.qp(:,3));
   grid on;
@@ -188,7 +160,7 @@
   legend('q','qp');
 
   ej6 = subplot(3,3,6);
-  plot(out.qd(:,3));
+  plot(out.qd(:,3),'LineWidth',1.5);
   hold on;
   plot(out.qdp(:,3));
   grid on;
@@ -196,7 +168,7 @@
   legend('qd','qdp');
 
   ej9 = subplot(3,3,9);
-  plot(out.qdd(:,3));
+  plot(out.qdd(:,3),'LineWidth',1.5);
   hold on;
   plot(out.qddp(:,3));
   grid on;
