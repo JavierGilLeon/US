@@ -96,7 +96,7 @@
         0,  0,  I33z ] 
 
 
-  %%
+  %% Graficas para comprobar que los parametros dinámicos están bien
   
   out = sim("Comprobacion.slx");
   
@@ -230,7 +230,12 @@ end
       q3_int(i) = q(3,1);
   end
 
-% Graficas
+%% Graficas del inerpolador cúbico
+
+figure;
+plot3(x_int,y_int,z_int);
+grid on;
+
 
 figure;
 ej1 = subplot(3,2,1);
@@ -273,3 +278,7 @@ grid on;
 
 linkaxes([ej1 ej3 ej5],'x');
 linkaxes([ej2 ej4 ej6],'x');
+
+%% Diseño de controladores
+
+% Controlador PD descentralizado
