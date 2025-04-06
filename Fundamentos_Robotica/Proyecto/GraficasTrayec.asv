@@ -1,0 +1,22 @@
+clc;
+close all;
+out = sim("Sim_Trayect.slx");
+
+subplot(3,1,1);
+plot(out.tout,out.qr());
+title('q1');
+grid on;
+
+subplot(3,1,2);
+plot(out.tout,out.qdr);
+title('q2');
+grid on;
+
+subplot(3,1,3);
+plot(out.tout,out.qddr);
+title('q3');
+grid on;
+
+figure;
+plot3(out.xr,out.yr,out.zr);
+grid on;

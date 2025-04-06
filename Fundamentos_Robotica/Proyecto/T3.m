@@ -3,7 +3,7 @@ function [qt,tt] = T3(in)
 qi = in(:,1);
 t = in(:,2);
 
-N = 100;
+N = 5;
 i = 1;
 
 
