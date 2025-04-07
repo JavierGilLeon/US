@@ -11,6 +11,7 @@ A23 = MDH(PI/2,L3A+q3,L3B,0);
 
 TB3 = simplify(TB0*A01*A12*A23);
 
+
 subs(TB3,[q1,q2,q3],[0,0,0]);
 
 
@@ -21,10 +22,14 @@ posEF = simplify(TB3(1:3,4));
 
 
 % Angulos de Euler
+REF = simplify(TB3(1:3,1:3));
 
 
-% Cinematica Inversa
+%% Puntos singulares
 
-syms px py pz nx ny nz ox oy oz ax ay az real
+Jdir = [diff(posEF(1),q1) diff(posEF(1),q2) diff(posEF(1),q3);
+        diff(posEF(2),q1) diff(posEF(2),q2) diff(posEF(2),q3);
+        diff(posEF(3),q1) diff(posEF(3),q2) diff(posEF(3),q3)];
 
+simplify(det(Jdir))
 

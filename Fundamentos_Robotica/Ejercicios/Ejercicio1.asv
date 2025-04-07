@@ -11,19 +11,23 @@ A23 = MDH(PI/2,L3A+q3,L3B,0);
 
 TB3 = simplify(TB0*A01*A12*A23);
 
+
 subs(TB3,[q1,q2,q3],[0,0,0]);
 
 
-% Cinematica Directa
-x = L2*cos(q1) + L3B*cos(q1) - L1*sin(q1) - L3A*sin(q1)*sin(q2);
-y = L1*cos(q1) + L2*sin(q1) + L3B*sin(q1) + L3A*cos(q1)*sin(q2);
-z = L0 - cos(q2)*(L3A + q3);
+%% Cinematica Directa
+
+% Ecuaciones de posicion
+posEF = simplify(TB3(1:3,4));
+
 
 % Angulos de Euler
+REF = simplify(TB3(1:3,1:3));
 
 
-% Cinematica Inversa
+%% Puntos singulares
 
-syms px py pz nx ny nz ox oy oz ax ay az real
-
+Jdir = [diff(posEF(1),q1) diff(posEF(2),q2) diff(posEF(3),q3);
+        diff(posEF(1),q1) diff(posEF(2),q2) diff(posEF(3),q3);
+        diff(posEF(1),q1) diff(posEF(2),q2) diff(posEF(3),q3);]
 
