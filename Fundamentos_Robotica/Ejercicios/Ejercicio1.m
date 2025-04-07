@@ -11,4 +11,20 @@ A23 = MDH(PI/2,L3A+q3,L3B,0);
 
 TB3 = simplify(TB0*A01*A12*A23);
 
-subs(TB3,[q1,q2,q3],[0,0,0])
+subs(TB3,[q1,q2,q3],[0,0,0]);
+
+
+%% Cinematica Directa
+
+% Ecuaciones de posicion
+posEF = simplify(TB3(1:3,4));
+
+
+% Angulos de Euler
+
+
+% Cinematica Inversa
+
+syms px py pz nx ny nz ox oy oz ax ay az real
+
+
