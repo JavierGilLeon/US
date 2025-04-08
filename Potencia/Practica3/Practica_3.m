@@ -1,0 +1,131 @@
+clc;
+clear;
+close all;
+
+
+%% Definición de parámetros de los componentes
+
+Vdc = 500;
+
+C = 1.5e-3; % Capacidad del condensador en paralelo
+
+f = 8e3; 
+T = 1/f;
+
+Pmp = 10524.2;
+Vmp = 223.836;
+
+%----- Parametros del PI ----------
+Kp = 0.001;
+Ti = 30;
+Tm = T/2; % Tiempo de muestreo
+%-----------------------------
+
+
+% -------Parametros del transformador----
+Lm = 0;
+Rm = 10e6;
+
+V2 = 400;
+V1 = V2/2;
+
+R1 = 0.1;
+R2 = 0.1;
+
+L1 = 0;
+L2 = 0;
+% ---------------------------------------
+
+
+%--------------Parámetros del Modulador PWM triangular ---------------
+
+RepeatingTime = [0 T/2 T];
+RepeatingOut  = [0 1 0];
+
+% ----------------------------------------------------------------------
+
+
+
+%% Simulación y gráficas
+tsim = 1;
+out = sim("Practica3.slx");
+
+%---------- Tension del panel -----------
+figure;
+plot(out.Vp,'linewidth',1.5);
+hold on;
+fplot(Vmp,[0 tsim],'linewidth',1.5);
+xlabel('Tiempo (s)');
+ylabel('V (V)');
+title('Tension en bornas del panel');
+legend('Vpanel','Vmp');
+grid;
+% --------------------------------------
+
+% ------------------ Potencia del panel -----
+figure;
+plot(out.Pp,'linewidth',1.5);
+hold on;
+fplot(Pmp,[0 tsim],'linewidth',1.5);
+xlabel('Tiempo (s)');
+ylabel('P (W)');
+title('Potencia instantánea del panel');
+grid;
+legend('PV','Pmp');
+% -----------------------------------------
+
+% ------------------ Duty Cicle -----
+figure;
+plot(out.D,'linewidth',1.5);
+xlabel('Tiempo (s)');
+ylabel('D');
+title('Duty Cicle');
+grid;
+% -----------------------------------------
+
+% ------------------ Corriente de magnetización -----
+figure;
+plot(out.Im,'linewidth',1.5);
+xlabel('Tiempo (s)');
+ylabel('I (A)');
+title('Corriente de la bobina de magnetización');
+grid;
+% -----------------------------------------
+
+
+% ------------------ Tensiones y corrientes del IGBT -----
+figure;
+ej1 = subplot(2,1,1);
+plot(out.V_IGBT,'linewidth',1.5);
+ylabel('V_IGBT (V)');
+title('Tension del IGBT');
+grid;
+
+ej2 = subplot(2,1,2);
+plot(out.I_IGBT,'linewidth',1.5);
+title('Corriente del IGBT');
+xlabel('Tiempo (s)');
+ylabel('I_IGBT (A)');
+grid;
+
+linkaxes([ej1 ej2],'x');
+% -----------------------------------------
+
+
+% ------------ Tensiones y corrientes del Diodo --------
+figure;
+ej1 = subplot(2,1,1);
+plot(out.Vak,'linewidth',1.5);
+ylabel('V_ak (V)');
+title('Tension del Diodo');
+grid;
+
+ej2 = subplot(2,1,2);
+plot(out.Iak,'linewidth',1.5);
+xlabel('Tiempo (s)');
+title('Corriente del Diodo');
+ylabel('I_ak (A)');
+grid;
+
+linkaxes([ej1 ej2],'x');
+% --------------------------------------------------------

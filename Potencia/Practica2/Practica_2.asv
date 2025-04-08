@@ -1,0 +1,17 @@
+
+%% Parte 1: Bucle Abierto
+
+Vd = 120;   %V 
+C = 470e-3; %F
+Rc = 100;   %Ohm
+L = 4e-3;   %H
+Vi = 5;     % V
+f = 20e3;   %Hz
+T = 1/f;    %s
+
+RepeatingTime = [0 T/2 T];
+RepeatingOut  = [0 1 0];
+Duty = 0.5;
+
+NumCz = 10;
+DenCz = [1 -1];
