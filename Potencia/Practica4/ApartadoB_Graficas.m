@@ -54,5 +54,7 @@ grid on;
 ej2 = subplot(2,1,2);
 plot(out.Iak,'LineWidth',1.5);
 title('Corriente del Diodo');
-ylabel('V_{ak} (A)');
+ylabel('I_{ak} (A)');
 grid on;
+
+linkaxes([ej1 ej2],'x');

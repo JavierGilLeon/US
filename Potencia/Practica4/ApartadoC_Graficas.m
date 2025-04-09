@@ -48,5 +48,24 @@ title('Corriente del IGBT');
 ylabel('I_IGBT (A)');
 grid on;
 
+linkaxes([ej1 ej2],'x');
+
+% Tensiones y corrientes máximas del Diodo
+figure;
+ej1 = subplot(2,1,1);
+plot(out.Vak,'linewidth',1.5);
+title('Tensión del Diodo');
+ylabel('Vak (V)');
+grid on;
+
+ej2 = subplot(2,1,2);
+plot(out.Iak,'linewidth',1.5);
+title('Corriente del Diodo');
+ylabel('Iak (A)');
+grid on;
+
+
+linkaxes([ej1 ej2],'x');
+
 
 
