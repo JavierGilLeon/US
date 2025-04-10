@@ -16,8 +16,8 @@ Pnom = 8e3;
 
 RL = VdcLinkDes.^2/Pnom;
 
-Vmp = 207;
-Pmp = 4037.5;
+Vmp = 206.941;
+Pmp = 5383.34;
 
 L = 5e-3;
 

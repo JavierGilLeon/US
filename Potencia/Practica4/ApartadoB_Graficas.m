@@ -44,7 +44,7 @@ grid on;
 linkaxes([ej1 ej2],'x');
 
 % Tensiones y corrientes del Diodo
-figure;
+f1=figure;
 ej1 = subplot(2,1,1);
 plot(out.Vak,'LineWidth',1.5);
 title('Tensión del Diodo');
@@ -53,8 +53,8 @@ grid on;
 
 ej2 = subplot(2,1,2);
 plot(out.Iak,'LineWidth',1.5);
-title('Corriente del Diodo');
+title('Corriente del Diodo');s
 ylabel('I_{ak} (A)');
 grid on;
-
+saveas(f1, 'ejemplo.png', png)
 linkaxes([ej1 ej2],'x');

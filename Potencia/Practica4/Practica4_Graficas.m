@@ -23,12 +23,12 @@ linkaxes([ej1 ej2 ej3],'x');
 % Duty Cycles
 figure;
 ej1 = subplot(2,1,1);
-plot(out.Df);
+plot(out.Df,'linewidth',1.5);
 title('Duty del Flyback');
 grid on;
 
 ej2 = subplot(2,1,2);
-plot(out.De);
+plot(out.De,'linewidth',1.5);
 title('Duty del elevador');
 grid on;
 
@@ -48,7 +48,7 @@ title('Tensiones Vdc');
 
 
 % Corrientes
-figure;
+f1 = figure;
 ej1 = subplot(3,1,1);
 plot(out.Ia,'linewidth',1.5);
 title('Corriente de la fase A de la fuente')
@@ -67,4 +67,3 @@ title('Corriente por la bobina del flyback');
 ylabel('Ilflyback (A)');
 grid on;
 
-linkaxes([ej1 ej2 ej3],'x');
