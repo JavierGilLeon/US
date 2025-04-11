@@ -15,3 +15,13 @@ a1 = 250;
 b1 = 0.093432; % Lo que multiplica a qd1
 
 g11 = tf(1,[a1 b1 0]); % Funcion de transferencia
+
+% Articulacion 2
+q2 = pi; 
+
+a2 = 56.91;
+b2 = 0.12506;
+
+g22 = tf(1,[a2 b2 0]);
+
+% Articulacion 3
